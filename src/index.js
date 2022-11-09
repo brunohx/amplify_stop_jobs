@@ -9,7 +9,7 @@ var amplify = new AWS.Amplify({ region });
 amplify.listJobs({ appId, branchName }, function (err, data) {
   if (err) console.log(err, err.stack);
   
-  console.log(data.jobSummaries)
+  core.debug(data)
 
   data.jobSummaries
     .filter((job) =>
