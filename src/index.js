@@ -7,9 +7,7 @@ const region = core.getInput('region');
 var amplify = new AWS.Amplify({ region });
 
 amplify.listJobs({ appId, branchName }, function (err, data) {
-  if (err) console.log(err, err.stack);
-  
-  core.debug(data)
+  if (err) core.error(err);
 
   data.jobSummaries
     .filter((job) =>
@@ -18,8 +16,8 @@ amplify.listJobs({ appId, branchName }, function (err, data) {
     .forEach((job) => {
       const { jobId } = job;
       amplify.stopJob({ appId, branchName, jobId }, function (err, data) {
-        if (err) console.log(err, err.stack);
-        else console.log(data);
+        if (err) console.error(err);
+        else core.debug(data);
       });
     });
 });
