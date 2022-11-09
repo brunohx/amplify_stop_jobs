@@ -10,7 +10,9 @@ amplify.listJobs({ appId, branchName }, function (err, data) {
   if (err) console.log(err, err.stack);
 
   data.jobSummaries
-    .filter((job) => job.status === 'PENDING')
+    .filter((job) =>
+      ["PENDING", "PROVISIONING", "RUNNING"].includes(job.status)
+    )
     .forEach((job) => {
       const { jobId } = job;
       amplify.stopJob({ appId, branchName, jobId }, function (err, data) {
