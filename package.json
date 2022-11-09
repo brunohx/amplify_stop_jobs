@@ -3,7 +3,6 @@
   "version": "0.3.0",
   "description": "Github Action for stopping previous Job Runs for an specific branch/appId",
   "main": "./dist/index.js",
-  "type": "module",
   "scripts": {
     "build": "ncc build -m ./src/index.js",
     "lint": "eslint ./src/**/*.js --ignore-path .gitignore --fix",
